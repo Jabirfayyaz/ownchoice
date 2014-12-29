@@ -59,9 +59,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
    public DataSource restDataSource() {
       BasicDataSource dataSource = new BasicDataSource();
       dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-      dataSource.setUrl(env.getProperty("jdbc.url"));
-      dataSource.setUsername(env.getProperty("jdbc.user"));
-      dataSource.setPassword(env.getProperty("jdbc.pass"));
+      //GIT setting
+      String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+      String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+      String url = "jdbc:mysql://"+host+":"+port+"/test425?createDatabaseIfNotExist=true&autoReconnect=true";
+      dataSource.setUrl(url);
+      dataSource.setUsername("admin3iVUVqp");
+      dataSource.setPassword("1n37w8EeduCV");
  
       return dataSource;
    }
